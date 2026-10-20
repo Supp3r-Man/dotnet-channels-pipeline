@@ -256,7 +256,7 @@ Not tested by mutation: `Fan.Merge`/`Fan.Batch` beyond the mutants in the table 
 * **Cooperative only.** Cancellation and `ItemTimeout` rely on the stage function observing its token. A function that blocks forever without checking it will hold its worker (and `RunAsync`) forever; a source that ignores its cancellation token while blocked inside `MoveNextAsync` has the same effect.
 * **Retries hold the worker** during backoff, and ordered stages have head-of-line blocking within their window.
 * **Not TPL Dataflow, not Akka Streams.** No graph topologies (only a linear chain plus the `Fan` helpers), no completion propagation between independent blocks, no supervision strategies, no rate limiting or windowing beyond `Batch`.
-* **Only tested on Windows locally** with .NET 10.0.402. The CI workflow targets Ubuntu but **CI not yet confirmed.**
+* **Only tested on Windows locally** with .NET 10.0.402. The CI workflow targets Ubuntu and it ran green on its first run on GitHub Actions (ubuntu-latest, 2026-10-20).
 * **Throughput is unmeasured.** The demo's records/s figures are a timer-bound toy, not a benchmark.
 
 ## Build
@@ -275,7 +275,7 @@ dotnet test
 git clone https://github.com/Supp3r-Man/dotnet-channels-pipeline.git
 ```
 
-CI not yet confirmed.
+CI ran green on the first run on GitHub Actions (ubuntu-latest, 2026-10-20).
 
 ## License
 
