@@ -1,0 +1,8 @@
+bin/
+obj/
+TestResults/
+.stryker/
+StrykerOutput/
+.tools/
+*.user
+.vs/

@@ -1,0 +1,35 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build-test-demo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Build (warnings are errors)
+        run: dotnet build --no-restore -warnaserror
+
+      - name: Test
+        run: dotnet test --no-build
+
+      - name: Demo (small settings)
+        run: >
+          dotnet run --no-build --project demo/ChannelsPipeline.Demo --
+          --records 3000 --write-ms 1 --write-workers 32
+          --contrast-records 2000 --failure-records 3000 --sample-ms 500

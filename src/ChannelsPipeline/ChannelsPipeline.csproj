@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>ChannelsPipeline</RootNamespace>
+    <AssemblyName>ChannelsPipeline</AssemblyName>
+    <Description>A staged, backpressured data-processing pipeline built on System.Threading.Channels.</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="ChannelsPipeline.Tests" />
+  </ItemGroup>
+</Project>
